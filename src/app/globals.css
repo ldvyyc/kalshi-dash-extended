@@ -2,13 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-  }
+/* ── ldvyyc brand tokens ─────────────────────────────────────────── */
+:root {
+  --brand-bg:     #050508;
+  --brand-bg2:    #0D1018;
+  --brand-bg3:    #141A1F;
+  --brand-blue:   #5BB8E8;
+  --brand-yellow: #C8D44A;
+  --brand-green:  #3A8B5C;
+  --brand-muted:  #4A5568;
+  --brand-text:   #EDF2F7;
+  --brand-dim:    #A0AEC0;
+
+  /* Keep Tailwind-compatible aliases */
+  --background: var(--brand-bg);
+  --foreground: var(--brand-text);
 }
 
+/* ── Base reset ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
 body {
-  @apply bg-background text-foreground;
+  background: var(--brand-bg);
+  color: var(--brand-text);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* ── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--brand-bg); }
+::-webkit-scrollbar-thumb { background: var(--brand-muted); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brand-blue); }
+
+/* ── Override Tailwind shadow for dark backgrounds ───────────────── */
+.shadow    { box-shadow: 0 1px 8px rgba(0,0,0,0.45) !important; }
+.shadow-lg { box-shadow: 0 4px 20px rgba(0,0,0,0.55) !important; }
+.shadow-sm { box-shadow: 0 1px 4px rgba(0,0,0,0.35) !important; }
+
+/* ── Brand utility classes ───────────────────────────────────────── */
+.brand-card {
+  background: rgba(20,26,31,0.80);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.brand-card:hover {
+  border-color: rgba(91,184,232,0.35);
+  box-shadow: 0 0 20px rgba(91,184,232,0.08);
+  transform: translateY(-2px);
+}
+
+.brand-accent-blue   { color: var(--brand-blue); }
+.brand-accent-yellow { color: var(--brand-yellow); }
+.brand-accent-green  { color: var(--brand-green); }
+.brand-dim           { color: var(--brand-dim); }
